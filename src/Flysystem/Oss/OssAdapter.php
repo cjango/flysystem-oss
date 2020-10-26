@@ -596,6 +596,14 @@ class OssAdapter extends AbstractAdapter
             $this->endpoint = substr($this->endpoint, strlen('https://'));
             $this->useSSL   = true;
         }
+
+        if (0 === strpos($this->cdnHost, 'http://')) {
+            $this->cdnHost = substr($this->cdnHost, strlen('http://'));
+            $this->useSSL   = false;
+        } elseif (0 === strpos($this->cdnHost, 'https://')) {
+            $this->cdnHost = substr($this->cdnHost, strlen('https://'));
+            $this->useSSL   = true;
+        }
     }
 
     /**
