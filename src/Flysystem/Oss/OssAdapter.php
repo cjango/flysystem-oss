@@ -81,7 +81,7 @@ class OssAdapter extends AbstractAdapter
      * @param string      $endpoint
      * @param string      $bucket
      * @param bool        $isCName
-     * @param string      $prefix
+     * @param string|null $prefix
      * @param array       $buckets
      * @param string|null $cdnHost
      * @throws \OSS\Core\OssException
@@ -132,7 +132,7 @@ class OssAdapter extends AbstractAdapter
      */
     protected function initClient(): void
     {
-        $this->client = new OssClient($this->accessKeyId, $this->accessKeySecret, $this->endpoint, $this->isCName);
+        $this->client = new OssClient($this->accessKeyId, $this->accessKeySecret, $this->endpoint);
     }
 
     /**
@@ -599,10 +599,10 @@ class OssAdapter extends AbstractAdapter
 
         if (0 === strpos($this->cdnHost, 'http://')) {
             $this->cdnHost = substr($this->cdnHost, strlen('http://'));
-            $this->useSSL   = false;
+            $this->useSSL  = false;
         } elseif (0 === strpos($this->cdnHost, 'https://')) {
             $this->cdnHost = substr($this->cdnHost, strlen('https://'));
-            $this->useSSL   = true;
+            $this->useSSL  = true;
         }
     }
 
