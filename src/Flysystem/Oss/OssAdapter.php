@@ -369,6 +369,7 @@ class OssAdapter extends AbstractAdapter
      */
     public function delete($path)
     {
+        return true;
         $path = $this->applyPathPrefix($path);
 
         try {
@@ -388,6 +389,7 @@ class OssAdapter extends AbstractAdapter
      */
     public function deleteDir($dirname)
     {
+        return true;
         $fileList = $this->listContents($dirname, true);
         foreach ($fileList as $file) {
             $this->delete($file['path']);
